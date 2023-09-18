@@ -1,11 +1,12 @@
 #include <Servo.h>
 #include <SoftwareSerial.h>
 
+//BASE MOTORS
 Servo m_servo1;  // create servo object to control a servo
 Servo m_servo2;  // create servo object to control a servo
 Servo m_servo3;  // create servo object to control a servo
 Servo m_servo4;  // create servo object to control a servo
-
+//ARM MOTORS
 Servo a_servo1;
 Servo a_servo2;
 Servo a_servo3;
@@ -18,7 +19,7 @@ int pos1 = 90;
 int pos2 = 90;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(9600);   //start serial transmission at bit rate 9600 bps
   //Robot chassis pins
   m_servo1.attach(14);
   m_servo2.attach(15);
@@ -30,85 +31,85 @@ void setup() {
   a_servo3.attach(5);  
   a_servo4.attach(4);
 
-  a_servo2.write(90);  // attaches the servo on pin 9 to the servo object  
-  a_servo3.write(90);  // attaches the servo on pin 9 to the servo object  
+  a_servo2.write(90);  
+  a_servo3.write(90);    
   arm = false;
   Serial.println("Uno BEGIN");
 }
 
 void loop() { 
-  if(Serial.available()) {
-    usr = Serial.read();
+  if(Serial.available()) { //if nothing is being transmitted via serial, run code
+    usr = Serial.read();  // read incoming serial transmission
 
     //CAR CHASSIS PINS
     if (usr == '1'){
-      m_servo1.attach(14);  // attaches the servo on pin 9 to the servo object  
-      m_servo2.attach(15);  // attaches the servo on pin 9 to the servo object  
+      m_servo1.attach(14);  // attaches the servo object to pin 14 on the micro-controller
+      m_servo2.attach(15);  
 
-      m_servo3.attach(16);  // attaches the servo on pin 9 to the servo object  
-      m_servo4.attach(17);  // attaches the servo on pin 9 to the servo object  
+      m_servo3.attach(16);  
+      m_servo4.attach(17);
 
-      m_servo1.write(0);  // attaches the servo on pin 9 to the servo object  
-      m_servo2.write(180);  // attaches the servo on pin 9 to the servo object        
+      m_servo1.write(0);  
+      m_servo2.write(180);   
 
-      m_servo3.write(180);  // attaches the servo on pin 9 to the servo object  
-      m_servo4.write(0);  // attaches the servo on pin 9 to the servo object  
+      m_servo3.write(180);  
+      m_servo4.write(0);  
 
       Serial.println("moving forward"); 
 
     } 
     else if (usr == '4'){
 
-      m_servo1.attach(14);  // attaches the servo on pin 9 to the servo object  
-      m_servo2.attach(15);  // attaches the servo on pin 9 to the servo object  
+      m_servo1.attach(14);  // 
+      m_servo2.attach(15);  // 
 
-      m_servo3.attach(16);  // attaches the servo on pin 9 to the servo object  
-      m_servo4.attach(17);  // attaches the servo on pin 9 to the servo object  
+      m_servo3.attach(16);  
+      m_servo4.attach(17);  
 
-      m_servo1.write(180);  // attaches the servo on pin 9 to the servo object  
-      m_servo2.write(0);  // attaches the servo on pin 9 to the servo object        
+      m_servo1.write(180);   
+      m_servo2.write(0);      
 
-      m_servo3.write(0);  // attaches the servo on pin 9 to the servo object  
-      m_servo4.write(180);  // attaches the servo on pin 9 to the servo object  
+      m_servo3.write(0);  
+      m_servo4.write(180);  // tell the motor to spin in a certain direction at a certain speed
 
     }   
     else if (usr == '2'){  
-      m_servo1.attach(14);  // attaches the servo on pin 9 to the servo object  
-      m_servo2.attach(15);  // attaches the servo on pin 9 to the servo object  
+      m_servo1.attach(14);  
+      m_servo2.attach(15);    
 
-      m_servo3.attach(16);  // attaches the servo on pin 9 to the servo object  
-      m_servo4.attach(17);  // attaches the servo on pin 9 to the servo object  
+      m_servo3.attach(16);  
+      m_servo4.attach(17);  
 
-      m_servo1.write(0);  // attaches the servo on pin 9 to the servo object  
-      m_servo2.write(0);  // attaches the servo on pin 9 to the servo object        
+      m_servo1.write(0);   
+      m_servo2.write(0);        
 
-      m_servo3.write(0);  // attaches the servo on pin 9 to the servo object  
-      m_servo4.write(0);  // attaches the servo on pin 9 to the servo object  
+      m_servo3.write(0);  
+      m_servo4.write(0);  
 
       Serial.println("moving forward"); 
 
     } 
     else if (usr == '3'){ 
-      m_servo1.attach(14);  // attaches the servo on pin 9 to the servo object  
-      m_servo2.attach(15);  // attaches the servo on pin 9 to the servo object  
+      m_servo1.attach(14);  
+      m_servo2.attach(15);  
 
-      m_servo3.attach(16);  // attaches the servo on pin 9 to the servo object  
-      m_servo4.attach(17);  // attaches the servo on pin 9 to the servo object  
+      m_servo3.attach(16); 
+      m_servo4.attach(17);  
 
-      m_servo1.write(180);  // attaches the servo on pin 9 to the servo object  
-      m_servo2.write(180);  // attaches the servo on pin 9 to the servo object        
+      m_servo1.write(180);  
+      m_servo2.write(180);          
 
-      m_servo3.write(180);  // attaches the servo on pin 9 to the servo object  
-      m_servo4.write(180);  // attaches the servo on pin 9 to the servo object  
+      m_servo3.write(180);    
+      m_servo4.write(180);    
 
       Serial.println("moving forward"); 
 
     }         
     else if (usr == 's'){
-      m_servo1.detach();  // attaches the servo on pin 9 to the servo object
-      m_servo2.detach();  // attaches the servo on pin 9 to the servo object
-      m_servo3.detach();  // attaches the servo on pin 9 to the servo object
-      m_servo4.detach();  // attaches the servo on pin 9 to the servo object
+      m_servo1.detach();  //detach servo, de-activates it 
+      m_servo2.detach();  
+      m_servo3.detach();  
+      m_servo4.detach();  
 
       a_servo1.detach();
       //a_servo2.detach();
@@ -135,7 +136,7 @@ void loop() {
         if(pos1 < 180){
           pos1 += 10;
         }
-      a_servo2.write(pos1);
+      a_servo2.write(pos1);   //move servo to this position
 
     }    
     else if(usr == 'r'){
@@ -175,6 +176,6 @@ void loop() {
       a_servo4.write(180);
     }        
 
-  delay(50);              
+  delay(50);               //delay code by 50 ms to not overwhelm the micro controller 
   }
 }
